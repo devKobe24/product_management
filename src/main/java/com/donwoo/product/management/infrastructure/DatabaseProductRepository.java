@@ -71,6 +71,7 @@ public class DatabaseProductRepository {
 		return products;
 	}
 
+	// 상품 수정 기능
 	public Product update(Product product) {
 		SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(product);
 
@@ -79,11 +80,12 @@ public class DatabaseProductRepository {
 		return product;
 	}
 
+	// 상품 삭제 기능
 	public void delete(Long product_id) {
 		SqlParameterSource namedParameter = new MapSqlParameterSource("product_id", product_id);
 
 		namedParameterJdbcTemplate.update(
-				"DELETE FROM Product WHERE product_id:=product_id",
+				"DELETE FROM Product WHERE product_id=:product_id",
 				namedParameter
 		);
 	}
