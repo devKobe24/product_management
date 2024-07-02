@@ -30,6 +30,12 @@ public class Product {
 		this.productId = productId;
 	}
 
+	public void setProductName(String productName) { this.productName = productName; }
+
+	public void setPricePerKg(Integer pricePerKg) { this.pricePerKg = pricePerKg; }
+
+	public void setBrandName(String brandName) { this.brandName = brandName; }
+
 	// Getter
 	public String getMeatGrade() {
 		return meatGrade;

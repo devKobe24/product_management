@@ -25,6 +25,7 @@ public class DatabaseProductRepository {
 		this.namedParameterJdbcTemplate = namedParameterJdbcTemplate;
 	}
 
+	// 상품 추가 기능
 	public Product add(Product product) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
 		SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(product);
@@ -38,6 +39,7 @@ public class DatabaseProductRepository {
 				return product;
 	}
 
+	// 상품 조회 기능(product_id로)
 	public Product findById(Long prodcutId) {
 		SqlParameterSource namedParameter = new MapSqlParameterSource("product_id", prodcutId);
 
@@ -49,12 +51,25 @@ public class DatabaseProductRepository {
 		return product;
 	}
 
+	// 상품 전체 조회 기능
 	public List<Product> findAll() {
-		return Collections.EMPTY_LIST;
+		List<Product> products = namedParameterJdbcTemplate.query(
+				"SELECT * FROM Product",
+				new BeanPropertyRowMapper<>(Product.class)
+		);
+		return products;
 	}
 
+	// 상품 이름으로 조회 기능
 	public List<Product> findByNameContaining(String productName) {
-		return Collections.EMPTY_LIST;
+		SqlParameterSource namedParameter = new MapSqlParameterSource("productName", "%" + "productName" + "%");
+
+		List<Product> products = namedParameterJdbcTemplate.query(
+				"SELECT * FROM Product WHERE productName LIKE :productName",
+				namedParameter,
+				new BeanPropertyRowMapper<>(Product.class)
+		);
+		return products;
 	}
 
 	public Product update(Product product) {
