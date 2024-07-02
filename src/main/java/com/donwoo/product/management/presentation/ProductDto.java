@@ -8,7 +8,7 @@ import jakarta.validation.constraints.NotNull;
 
 
 public class ProductDto {
-	private Long productId;
+	private Long product_id;
 
 	@NotNull
 	private String meatGrade;
@@ -35,8 +35,8 @@ public class ProductDto {
 	private MeatInformation meatInformation;
 
 	// Getter
-	public Long getProductId() {
-		return productId;
+	public Long getProduct_id() {
+		return product_id;
 	}
 
 	public String getMeatGrade() {
@@ -72,7 +72,7 @@ public class ProductDto {
 	}
 
 	// Setter
-	public void setProductId(Long productId) {
-		this.productId = productId;
+	public void setProduct_id(Long product_id) {
+		this.product_id = product_id;
 	}
 }

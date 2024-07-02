@@ -14,7 +14,7 @@ public class ListProductRepository {
 	private AtomicLong sequence = new AtomicLong(1L);
 
 	public Product add(Product product) {
-		product.setProductId(sequence.getAndAdd(1L));
+		product.setProduct_id(sequence.getAndAdd(1L));
 
 		products.add(product);
 		return product;

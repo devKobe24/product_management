@@ -1,7 +1,6 @@
 package com.donwoo.product.management.infrastructure;
 
 import com.donwoo.product.management.domain.Product;
-import java.util.Collections;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -34,14 +33,14 @@ public class DatabaseProductRepository {
 				namedParameter, keyHolder
 		);
 				Long generatedId = keyHolder.getKey().longValue();
-				product.setProductId(generatedId);
+				product.setProduct_id(generatedId);
 
 				return product;
 	}
 
 	// 상품 조회 기능(product_id로)
-	public Product findById(Long prodcutId) {
-		SqlParameterSource namedParameter = new MapSqlParameterSource("product_id", prodcutId);
+	public Product findById(Long prodcut_id) {
+		SqlParameterSource namedParameter = new MapSqlParameterSource("product_id", prodcut_id);
 
 		Product product = namedParameterJdbcTemplate.queryForObject(
 				"SELECT product_id, meatGrade, productName, pricePerKg, brandName FROM Product WHERE product_id=:product_id",
@@ -73,10 +72,19 @@ public class DatabaseProductRepository {
 	}
 
 	public Product update(Product product) {
-		return null;
+		SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(product);
+
+		namedParameterJdbcTemplate.update("UPDATE Product SET meatGrade=:meatGrade, productName=:productName, pricePerKg=:pricePerKg, brandName=:brandName WHERE product_id=:product_id", namedParameter);
+
+		return product;
 	}
 
-	public void delete(Long id) {
-		// do nothing
+	public void delete(Long product_id) {
+		SqlParameterSource namedParameter = new MapSqlParameterSource("product_id", product_id);
+
+		namedParameterJdbcTemplate.update(
+				"DELETE FROM Product WHERE product_id:=product_id",
+				namedParameter
+		);
 	}
 }

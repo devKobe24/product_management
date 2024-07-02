@@ -44,7 +44,7 @@ public class ProductController {
 			@PathVariable Long id,
 			@RequestBody ProductDto productDto
 	) {
-		productDto.setProductId(id);
+		productDto.setProduct_id(id);
 		return simpleProductService.update(productDto);
 	}
 
