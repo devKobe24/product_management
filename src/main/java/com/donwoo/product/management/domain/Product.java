@@ -6,7 +6,7 @@ import jakarta.validation.constraints.Size;
 import java.util.Objects;
 
 public class Product {
-	private Long id;
+	private Long productId;
 
 	@Size(min = 1, max = 10)
 	private String meatGrade;
@@ -26,8 +26,8 @@ public class Product {
 	private MeatInformation meatInformation;
 
 	// Setter
-	public void setId(Long id) {
-		this.id = id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
 
 	// Getter
@@ -64,8 +64,8 @@ public class Product {
 	}
 
 	// Method
-	public Boolean sameId(Long id) {
-		return this.id.equals(id);
+	public Boolean sameId(Long productId) {
+		return this.productId.equals(productId);
 	}
 
 	public Boolean containsProductName(String product_name) {
@@ -77,6 +77,6 @@ public class Product {
 		if (this == o) return true;
 		if (o == null || getClass() != o.getClass()) return false;
 		Product product = (Product) o;
-		return Objects.equals(id, product.id);
+		return Objects.equals(productId, product.productId);
 	}
 }

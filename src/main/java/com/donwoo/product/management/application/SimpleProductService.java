@@ -33,8 +33,8 @@ public class SimpleProductService {
 		return savedProductDto;
 	}
 
-	public ProductDto findById(Long id) {
-		Product product = databaseProductRepository.findById(id);
+	public ProductDto findById(Long productId) {
+		Product product = databaseProductRepository.findById(productId);
 		ProductDto productDto = modelMapper.map(product, ProductDto.class);
 		return productDto;
 	}
@@ -64,7 +64,7 @@ public class SimpleProductService {
 	}
 
 	// 상품 삭제
-	public void delete(Long id) {
-		databaseProductRepository.delete(id);
+	public void delete(Long productId) {
+		databaseProductRepository.delete(productId);
 	}
 }

@@ -3,13 +3,12 @@ package com.donwoo.product.management.presentation;
 import com.donwoo.product.management.domain.Certificate;
 import com.donwoo.product.management.domain.Facility;
 import com.donwoo.product.management.domain.MeatInformation;
-import com.donwoo.product.management.domain.Product;
 import com.donwoo.product.management.domain.ProductDate;
 import jakarta.validation.constraints.NotNull;
 
 
 public class ProductDto {
-	private Long id;
+	private Long productId;
 
 	@NotNull
 	private String meatGrade;
@@ -36,8 +35,8 @@ public class ProductDto {
 	private MeatInformation meatInformation;
 
 	// Getter
-	public Long getId() {
-		return id;
+	public Long getProductId() {
+		return productId;
 	}
 
 	public String getMeatGrade() {
@@ -73,8 +72,7 @@ public class ProductDto {
 	}
 
 	// Setter
-	public void setId(Long id) {
-		this.id = id;
+	public void setProductId(Long productId) {
+		this.productId = productId;
 	}
-
 }

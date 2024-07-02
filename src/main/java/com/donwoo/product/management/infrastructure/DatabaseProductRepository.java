@@ -33,16 +33,16 @@ public class DatabaseProductRepository {
 				namedParameter, keyHolder
 		);
 				Long generatedId = keyHolder.getKey().longValue();
-				product.setId(generatedId);
+				product.setProductId(generatedId);
 
 				return product;
 	}
 
 	public Product findById(Long prodcutId) {
-		SqlParameterSource namedParameter = new MapSqlParameterSource("prodcutId", prodcutId);
+		SqlParameterSource namedParameter = new MapSqlParameterSource("product_id", prodcutId);
 
 		Product product = namedParameterJdbcTemplate.queryForObject(
-				"SELECT prodcutId, meatGrade, productName, pricePerKg, brandName FROM Product WHERE prodcutId=:prodcutId",
+				"SELECT product_id, meatGrade, productName, pricePerKg, brandName FROM Product WHERE product_id=:product_id",
 				namedParameter,
 				new BeanPropertyRowMapper<>(Product.class)
 		);
