@@ -48,6 +48,16 @@ public class DatabaseProductRepository {
 		Long generatedId = keyHolder.getKey().longValue();
 		product.setProduct_id(generatedId);
 
+		
+		addDateInfo(product, generatedId);
+		addCertificate(product, generatedId);
+		addFacility(product, generatedId);
+		addMeatInfo(product, generatedId);
+
+		return product;
+	}
+
+	private void addDateInfo(Product product, Long generatedId) {
 		// DateInfo Table
 		if (product.getDate_info() != null) {
 			DateInfo dateInfo = product.getDate_info();
@@ -62,7 +72,9 @@ public class DatabaseProductRepository {
 					dateInfoParameters
 			);
 		}
+	}
 
+	private void addCertificate(Product product, Long generateId) {
 		// Certificate Table
 		if (product.getCertificate() != null) {
 			Certificate certificate = product.getCertificate();
@@ -77,7 +89,9 @@ public class DatabaseProductRepository {
 					certificateParameters
 			);
 		}
+	}
 
+	private void addFacility(Product product, Long generatedId) {
 		// Facility Table
 		if (product.getFacility() != null) {
 			Facility facility = product.getFacility();
@@ -92,7 +106,9 @@ public class DatabaseProductRepository {
 					facilityParameters
 			);
 		}
+	}
 
+	private void addMeatInfo(Product product, Long generatedId) {
 		// MeatInformation Table
 		if (product.getMeat_information() != null) {
 			MeatInformation meatInformation = product.getMeat_information();
@@ -114,8 +130,6 @@ public class DatabaseProductRepository {
 					meatInfoParameters
 			);
 		}
-
-		return product;
 	}
 
 	// 상품 조회 기능(product_id로)
