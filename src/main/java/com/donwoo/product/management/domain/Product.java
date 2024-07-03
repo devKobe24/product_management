@@ -9,56 +9,56 @@ public class Product {
 	private Long product_id;
 
 	@Size(min = 1, max = 10)
-	private String meatGrade;
+	private String meat_grade;
 
 	@Size(min = 1, max = 10)
-	private String productName;
+	private String product_name;
 
 	@Max(1_000_000)
 	@Min(0)
-	private Integer pricePerKg;
+	private Integer price_per_kg;
 
 	@Size(min = 1, max = 10)
-	private String brandName;
-	private ProductDate date;
+	private String brand_name;
+	private DateInfo date_info;
 	private Facility facility;
 	private Certificate certificate;
-	private MeatInformation meatInformation;
+	private MeatInformation meat_information;
 
 	// Setter
 
 
 	public void setProduct_id(Long product_id) { this.product_id = product_id; }
 
-	public void setProductName(String productName) { this.productName = productName; }
+	public void setProduct_name(String product_name) { this.product_name = product_name; }
 
-	public void setPricePerKg(Integer pricePerKg) { this.pricePerKg = pricePerKg; }
+	public void setPrice_per_kg(Integer price_per_kg) { this.price_per_kg = price_per_kg; }
 
-	public void setBrandName(String brandName) { this.brandName = brandName; }
+	public void setBrand_name(String brand_name) { this.brand_name = brand_name; }
+
+	public void setDate_info(DateInfo date_info) { this.date_info = date_info; }
 
 	// Getter
 
 	public Long getProduct_id() { return product_id; }
 
-	public String getMeatGrade() {
-		return meatGrade;
+	public String getMeat_grade() {
+		return meat_grade;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getProduct_name() {
+		return product_name;
 	}
 
-	public Integer getPricePerKg() {
-		return pricePerKg;
+	public Integer getPrice_per_kg() {
+		return price_per_kg;
 	}
 
-	public String getBrandName() {
-		return brandName;
+	public String getBrand_name() {
+		return brand_name;
 	}
 
-	public ProductDate getDate() {
-		return date;
-	}
+	public DateInfo getDate_info() { return date_info; }
 
 	public Facility getFacility() {
 		return facility;
@@ -68,8 +68,8 @@ public class Product {
 		return certificate;
 	}
 
-	public MeatInformation getMeatInformation() {
-		return meatInformation;
+	public MeatInformation getMeat_information() {
+		return meat_information;
 	}
 
 	// Method
@@ -78,7 +78,7 @@ public class Product {
 	}
 
 	public Boolean containsProductName(String product_name) {
-		return this.productName.contains(product_name);
+		return this.product_name.contains(product_name);
 	}
 
 	@Override

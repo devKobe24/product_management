@@ -21,7 +21,7 @@ public class SimpleProductService {
 		this.validationService = validationService;
 	}
 
-	public ProductDto add(ProductDto productDto) {
+	public ProductDto addToProduct(ProductDto productDto) {
 		// ProductDto를 Product로 변환
 		Product product = modelMapper.map(productDto, Product.class);
 		validationService.checkValid(product);

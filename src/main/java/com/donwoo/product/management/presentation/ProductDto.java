@@ -3,7 +3,7 @@ package com.donwoo.product.management.presentation;
 import com.donwoo.product.management.domain.Certificate;
 import com.donwoo.product.management.domain.Facility;
 import com.donwoo.product.management.domain.MeatInformation;
-import com.donwoo.product.management.domain.ProductDate;
+import com.donwoo.product.management.domain.DateInfo;
 import jakarta.validation.constraints.NotNull;
 
 
@@ -11,19 +11,19 @@ public class ProductDto {
 	private Long product_id;
 
 	@NotNull
-	private String meatGrade;
+	private String meat_grade;
 
 	@NotNull
-	private String productName;
+	private String product_name;
 
 	@NotNull
-	private Integer pricePerKg;
+	private Integer price_per_kg;
 
 	@NotNull
-	private String brandName;
+	private String brand_name;
 
 	@NotNull
-	private ProductDate date;
+	private DateInfo date_info;
 
 	@NotNull
 	private Facility facility;
@@ -32,31 +32,31 @@ public class ProductDto {
 	private Certificate certificate;
 
 	@NotNull
-	private MeatInformation meatInformation;
+	private MeatInformation meat_information;
 
 	// Getter
 	public Long getProduct_id() {
 		return product_id;
 	}
 
-	public String getMeatGrade() {
-		return meatGrade;
+	public String getMeat_grade() {
+		return meat_grade;
 	}
 
-	public String getProductName() {
-		return productName;
+	public String getProduct_name() {
+		return product_name;
 	}
 
-	public Integer getPricePerKg() {
-		return pricePerKg;
+	public Integer getPrice_per_kg() {
+		return price_per_kg;
 	}
 
-	public String getBrandName() {
-		return brandName;
+	public String getBrand_name() {
+		return brand_name;
 	}
 
-	public ProductDate getDate() {
-		return date;
+	public DateInfo getDate_info() {
+		return date_info;
 	}
 
 	public Facility getFacility() {
@@ -67,8 +67,8 @@ public class ProductDto {
 		return certificate;
 	}
 
-	public MeatInformation getMeatInformation() {
-		return meatInformation;
+	public MeatInformation getMeat_information() {
+		return meat_information;
 	}
 
 	// Setter

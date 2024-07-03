@@ -1,15 +1,15 @@
 package com.donwoo.product.management.domain;
 
 public class Certificate {
-	private String traceabilityNumber; // 이력번호
+	private String traceability_number; // 이력번호
 	private String certification; // 인증
 
-	public String getTraceabilityNumber() {
-		return traceabilityNumber;
+	public String getTraceability_number() {
+		return traceability_number;
 	}
 
-	public void setTraceabilityNumber(String traceabilityNumber) {
-		this.traceabilityNumber = traceabilityNumber;
+	public void setTraceability_number(String traceability_number) {
+		this.traceability_number = traceability_number;
 	}
 
 	public String getCertification() {

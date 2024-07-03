@@ -1,15 +1,15 @@
 package com.donwoo.product.management.domain;
 
 public class Facility {
-	private String processingFactory; // 가공장
+	private String processing_factory; // 가공장
 	private String slaughterhouse; // 도축장
 
-	public String getProcessingFactory() {
-		return processingFactory;
+	public String getProcessing_factory() {
+		return processing_factory;
 	}
 
-	public void setProcessingFactory(String processingFactory) {
-		this.processingFactory = processingFactory;
+	public void setProcessing_factory(String processing_factory) {
+		this.processing_factory = processing_factory;
 	}
 
 	public String getSlaughterhouse() {

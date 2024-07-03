@@ -16,10 +16,10 @@ public class ProductController {
 		this.simpleProductService = simpleProductService;
 	}
 
+	// Product 테이블 POST
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	public ProductDto createProduct(@Valid @RequestBody ProductDto productDto) {
-		System.out.println(productDto.getBrandName());
-		return simpleProductService.add(productDto);
+		return simpleProductService.addToProduct(productDto);
 	}
 
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.GET)

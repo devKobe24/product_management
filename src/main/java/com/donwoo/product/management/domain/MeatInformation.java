@@ -1,30 +1,30 @@
 package com.donwoo.product.management.domain;
 
 public class MeatInformation {
-	private Double backFat; // 등지방
-	private Integer meatColor; // 육색
+	private Double back_fat; // 등지방
+	private Integer meat_color; // 육색
 	private Integer maturity; // 성숙도
-	private Double loinArea; // 등심면적
-	private Integer fatColor; // 지방색
-	private Integer ageInMonths; // 월령
+	private Double loin_area; // 등심면적
+	private Integer fat_color; // 지방색
+	private Integer age_in_months; // 월령
 	private Integer marbling; // 근내지방
 	private Integer texture; // 조직감
 	private String birth; // 출생일
 
-	public Double getBackFat() {
-		return backFat;
+	public Double getBack_fat() {
+		return back_fat;
 	}
 
-	public void setBackFat(Double backFat) {
-		this.backFat = backFat;
+	public void setBack_fat(Double back_fat) {
+		this.back_fat = back_fat;
 	}
 
-	public Integer getMeatColor() {
-		return meatColor;
+	public Integer getMeat_color() {
+		return meat_color;
 	}
 
-	public void setMeatColor(Integer meatColor) {
-		this.meatColor = meatColor;
+	public void setMeat_color(Integer meat_color) {
+		this.meat_color = meat_color;
 	}
 
 	public Integer getMaturity() {
@@ -35,28 +35,28 @@ public class MeatInformation {
 		this.maturity = maturity;
 	}
 
-	public Double getLoinArea() {
-		return loinArea;
+	public Double getLoin_area() {
+		return loin_area;
 	}
 
-	public void setLoinArea(Double loinArea) {
-		this.loinArea = loinArea;
+	public void setLoin_area(Double loin_area) {
+		this.loin_area = loin_area;
 	}
 
-	public Integer getFatColor() {
-		return fatColor;
+	public Integer getFat_color() {
+		return fat_color;
 	}
 
-	public void setFatColor(Integer fatColor) {
-		this.fatColor = fatColor;
+	public void setFat_color(Integer fat_color) {
+		this.fat_color = fat_color;
 	}
 
-	public Integer getAgeInMonths() {
-		return ageInMonths;
+	public Integer getAge_in_months() {
+		return age_in_months;
 	}
 
-	public void setAgeInMonths(Integer ageInMonths) {
-		this.ageInMonths = ageInMonths;
+	public void setAge_in_months(Integer age_in_months) {
+		this.age_in_months = age_in_months;
 	}
 
 	public Integer getMarbling() {

@@ -1,6 +1,8 @@
 package com.donwoo.product.management.infrastructure;
 
+import com.donwoo.product.management.domain.Certificate;
 import com.donwoo.product.management.domain.Product;
+import com.donwoo.product.management.domain.DateInfo;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
@@ -27,15 +29,54 @@ public class DatabaseProductRepository {
 	// 상품 추가 기능
 	public Product add(Product product) {
 		KeyHolder keyHolder = new GeneratedKeyHolder();
-		SqlParameterSource namedParameter = new BeanPropertySqlParameterSource(product);
+		// Product Table
+		MapSqlParameterSource productParameters = new MapSqlParameterSource();
 
-				namedParameterJdbcTemplate.update("INSERT INTO Product (meatGrade, productName, pricePerKg, brandName) VALUES (:meatGrade, :productName, :pricePerKg, :brandName)",
-				namedParameter, keyHolder
+		productParameters.addValue("meat_grade", product.getMeat_grade());
+		productParameters.addValue("product_name", product.getProduct_name());
+		productParameters.addValue("price_per_kg", product.getPrice_per_kg());
+		productParameters.addValue("brand_name", product.getBrand_name());
+
+		namedParameterJdbcTemplate.update(
+				"INSERT INTO Product (meat_grade, product_name, price_per_kg, brand_name)" +
+						"VALUES (:meat_grade, :product_name, :price_per_kg, :brand_name)",
+				productParameters, keyHolder
 		);
-				Long generatedId = keyHolder.getKey().longValue();
-				product.setProduct_id(generatedId);
 
-				return product;
+		Long generatedId = keyHolder.getKey().longValue();
+		product.setProduct_id(generatedId);
+
+		// DateInfo Table
+		if (product.getDate_info() != null) {
+			DateInfo dateInfo = product.getDate_info();
+			MapSqlParameterSource dateInfoParameters = new MapSqlParameterSource();
+			dateInfoParameters.addValue("manufacture_date", dateInfo.getManufacture_date());
+			dateInfoParameters.addValue("use_by_date", dateInfo.getUse_by_date());
+			dateInfoParameters.addValue("product_id", generatedId);
+
+			namedParameterJdbcTemplate.update(
+					"INSERT INTO DateInfo (manufacture_date, use_by_date, product_id)" +
+							"VALUES (:manufacture_date, :use_by_date, :product_id)",
+					dateInfoParameters
+			);
+		}
+
+		// Certificate Table
+		if (product.getCertificate() != null) {
+			Certificate certificate = product.getCertificate();
+			MapSqlParameterSource certificateParameters = new MapSqlParameterSource();
+			certificateParameters.addValue("traceability_number", certificate.getTraceability_number());
+			certificateParameters.addValue("certification", certificate.getCertification());
+			certificateParameters.addValue("product_id", generatedId);
+
+			namedParameterJdbcTemplate.update(
+					"INSERT INTO Certificate (traceability_number, certification, product_id)" +
+							"VALUES (:traceability_number, :certification, :product_id)",
+					certificateParameters
+			);
+		}
+
+		return product;
 	}
 
 	// 상품 조회 기능(product_id로)
