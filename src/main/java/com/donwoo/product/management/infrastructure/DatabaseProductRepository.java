@@ -1,6 +1,8 @@
 package com.donwoo.product.management.infrastructure;
 
 import com.donwoo.product.management.domain.Certificate;
+import com.donwoo.product.management.domain.Facility;
+import com.donwoo.product.management.domain.MeatInformation;
 import com.donwoo.product.management.domain.Product;
 import com.donwoo.product.management.domain.DateInfo;
 import java.util.List;
@@ -73,6 +75,43 @@ public class DatabaseProductRepository {
 					"INSERT INTO Certificate (traceability_number, certification, product_id)" +
 							"VALUES (:traceability_number, :certification, :product_id)",
 					certificateParameters
+			);
+		}
+
+		// Facility Table
+		if (product.getFacility() != null) {
+			Facility facility = product.getFacility();
+			MapSqlParameterSource facilityParameters = new MapSqlParameterSource();
+			facilityParameters.addValue("processing_factory", facility.getProcessing_factory());
+			facilityParameters.addValue("slaughterhouse", facility.getSlaughterhouse());
+			facilityParameters.addValue("product_id", generatedId);
+
+			namedParameterJdbcTemplate.update(
+					"INSERT INTO Facility (processing_factory, slaughterhouse, product_id)" +
+							"VALUES (:processing_factory, :slaughterhouse, :product_id)",
+					facilityParameters
+			);
+		}
+
+		// MeatInformation Table
+		if (product.getMeat_information() != null) {
+			MeatInformation meatInformation = product.getMeat_information();
+			MapSqlParameterSource meatInfoParameters = new MapSqlParameterSource();
+			meatInfoParameters.addValue("back_fat", meatInformation.getBack_fat());
+			meatInfoParameters.addValue("meat_color", meatInformation.getMeat_color());
+			meatInfoParameters.addValue("maturity", meatInformation.getMaturity());
+			meatInfoParameters.addValue("loin_area", meatInformation.getLoin_area());
+			meatInfoParameters.addValue("fat_color", meatInformation.getFat_color());
+			meatInfoParameters.addValue("age_in_months", meatInformation.getAge_in_months());
+			meatInfoParameters.addValue("marbling", meatInformation.getMarbling());
+			meatInfoParameters.addValue("texture", meatInformation.getTexture());
+			meatInfoParameters.addValue("birth", meatInformation.getBirth());
+			meatInfoParameters.addValue("product_id", generatedId);
+
+			namedParameterJdbcTemplate.update(
+					"INSERT INTO MeatInformation (back_fat, meat_color, maturity, loin_area, fat_color, age_in_months, marbling, texture, birth, product_id)" +
+							"VALUES (:back_fat, :meat_color, :maturity, :loin_area, :fat_color, :age_in_months, :marbling, :texture, :birth, :product_id)",
+					meatInfoParameters
 			);
 		}
 
