@@ -5,8 +5,11 @@ import com.donwoo.product.management.domain.Facility;
 import com.donwoo.product.management.domain.MeatInformation;
 import com.donwoo.product.management.domain.Product;
 import com.donwoo.product.management.domain.DateInfo;
+import com.donwoo.product.management.domain.ProductRepository;
 import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
+import org.springframework.context.annotation.Profile;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -17,8 +20,10 @@ import org.springframework.jdbc.support.GeneratedKeyHolder;
 import org.springframework.jdbc.support.KeyHolder;
 import org.springframework.stereotype.Repository;
 
+@Primary
 @Repository
-public class DatabaseProductRepository {
+//@Profile("prod")
+public class DatabaseProductRepository implements ProductRepository {
 
 	private JdbcTemplate jdbcTemplate;
 	private NamedParameterJdbcTemplate namedParameterJdbcTemplate;

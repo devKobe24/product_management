@@ -2,13 +2,16 @@ package com.donwoo.product.management.infrastructure;
 
 import com.donwoo.product.management.domain.EntityNotFoundException;
 import com.donwoo.product.management.domain.Product;
+import com.donwoo.product.management.domain.ProductRepository;
 import java.util.List;
 import java.util.concurrent.CopyOnWriteArrayList;
 import java.util.concurrent.atomic.AtomicLong;
+import org.springframework.context.annotation.Profile;
 import org.springframework.stereotype.Repository;
 
 @Repository
-public class ListProductRepository {
+//@Profile("test")
+public class ListProductRepository implements ProductRepository {
 
 	private List<Product> products = new CopyOnWriteArrayList<>();
 	private AtomicLong sequence = new AtomicLong(1L);

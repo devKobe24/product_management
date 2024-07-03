@@ -29,6 +29,7 @@ public class Application {
 	}
 
 	@Bean
+//	@Profile("prod")
 	public ApplicationRunner runner(DataSource dataSource) {
 		return args -> {
 			Connection connection = dataSource.getConnection();

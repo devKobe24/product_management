@@ -1,0 +1,20 @@
+spring:
+  application:
+    name: product.management
+  jackson:
+    property-naming-strategy: SNAKE_CASE
+  datasource:
+    url: jdbc:mysql://localhost:3307/product_management
+    username: root
+    password: 1234
+    driver-class-name: com.mysql.cj.jdbc.Driver
+  jpa:
+    hibernate:
+      ddl-auto: update
+    properties:
+      hibernate:
+        dialect: org.hibernate.dialect.MySQL8Dialect
+logging:
+  level:
+    org.springframework: DEBUG
+    org.hibernate: DEBUG
