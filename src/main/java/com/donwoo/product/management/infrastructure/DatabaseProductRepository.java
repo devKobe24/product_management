@@ -48,7 +48,7 @@ public class DatabaseProductRepository {
 		Long generatedId = keyHolder.getKey().longValue();
 		product.setProduct_id(generatedId);
 
-		
+
 		addDateInfo(product, generatedId);
 		addCertificate(product, generatedId);
 		addFacility(product, generatedId);
@@ -74,7 +74,7 @@ public class DatabaseProductRepository {
 		}
 	}
 
-	private void addCertificate(Product product, Long generateId) {
+	private void addCertificate(Product product, Long generatedId) {
 		// Certificate Table
 		if (product.getCertificate() != null) {
 			Certificate certificate = product.getCertificate();
