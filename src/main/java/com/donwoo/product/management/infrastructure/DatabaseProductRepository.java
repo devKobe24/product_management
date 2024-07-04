@@ -150,6 +150,7 @@ public class DatabaseProductRepository implements ProductRepository {
 
 		findDateInfo(product, product.getProduct_id());
 		findFacility(product, product.getProduct_id());
+		findCertificate(product, product.getProduct_id());
 
 		return product;
 	}
@@ -171,6 +172,7 @@ public class DatabaseProductRepository implements ProductRepository {
 			}
 		}
 	}
+
 	// 상품 조회 기능 - Facility Table(product_id로)
 	private void findFacility(Product product, Long product_id) {
 		if (product_id != null) {
@@ -188,6 +190,26 @@ public class DatabaseProductRepository implements ProductRepository {
 			}
 		}
 	}
+
+	// 상품 조회 기능 - Certificate Table(product_id로)
+	private void findCertificate(Product product, Long product_id) {
+		if (product_id != null) {
+			SqlParameterSource certificateParameters = new MapSqlParameterSource("product_id", product_id);
+
+			try {
+				Certificate certificate = namedParameterJdbcTemplate.queryForObject(
+						"SELECT certificate_id, traceability_number, certification, product_id FROM Certificate WHERE product_id=:product_id",
+						certificateParameters,
+						new BeanPropertyRowMapper<>(Certificate.class)
+				);
+				product.setCertificate(certificate);
+			} catch (EmptyResultDataAccessException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+
 
 	// 상품 전체 조회 기능
 	public List<Product> findAll() {
