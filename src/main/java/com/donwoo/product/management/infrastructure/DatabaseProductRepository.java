@@ -151,6 +151,7 @@ public class DatabaseProductRepository implements ProductRepository {
 		findDateInfo(product, product.getProduct_id());
 		findFacility(product, product.getProduct_id());
 		findCertificate(product, product.getProduct_id());
+		findMeatInfo(product, product.getProduct_id());
 
 		return product;
 	}
@@ -203,6 +204,24 @@ public class DatabaseProductRepository implements ProductRepository {
 						new BeanPropertyRowMapper<>(Certificate.class)
 				);
 				product.setCertificate(certificate);
+			} catch (EmptyResultDataAccessException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+
+	// 상품 조회 기능 - MeatInformation(product_id로)
+	private void findMeatInfo(Product product, Long product_id) {
+		if (product_id != null) {
+			SqlParameterSource meatInfoParameters = new MapSqlParameterSource("product_id", product_id);
+
+			try {
+				MeatInformation meatInformation = namedParameterJdbcTemplate.queryForObject(
+						"SELECT meat_info_id, back_fat, meat_color, maturity, loin_area, fat_color, age_in_months, marbling, texture, birth, product_id FROM MeatInformation WHERE product_id=:product_id",
+						meatInfoParameters,
+						new BeanPropertyRowMapper<>(MeatInformation.class)
+				);
+				product.setMeat_information(meatInformation);
 			} catch (EmptyResultDataAccessException e) {
 				System.out.println(e.getMessage());
 			}
