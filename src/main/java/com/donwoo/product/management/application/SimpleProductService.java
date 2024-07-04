@@ -2,7 +2,6 @@ package com.donwoo.product.management.application;
 
 import com.donwoo.product.management.domain.Product;
 import com.donwoo.product.management.domain.ProductRepository;
-import com.donwoo.product.management.infrastructure.DatabaseProductRepository;
 import com.donwoo.product.management.presentation.ProductDto;
 import java.util.List;
 import org.modelmapper.ModelMapper;
@@ -13,7 +12,6 @@ import org.springframework.stereotype.Service;
 public class SimpleProductService {
 
 	private ProductRepository productRepository;
-//	private DatabaseProductRepository databaseProductRepository;
 	private ModelMapper modelMapper;
 	private ValidationService validationService;
 
@@ -24,7 +22,7 @@ public class SimpleProductService {
 		this.validationService = validationService;
 	}
 
-	public ProductDto addToProduct(ProductDto productDto) {
+	public ProductDto add(ProductDto productDto) {
 		// ProductDto를 Product로 변환
 		Product product = modelMapper.map(productDto, Product.class);
 		validationService.checkValid(product);

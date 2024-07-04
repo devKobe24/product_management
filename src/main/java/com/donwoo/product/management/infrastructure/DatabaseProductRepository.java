@@ -10,6 +10,7 @@ import java.util.List;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.context.annotation.Primary;
 import org.springframework.context.annotation.Profile;
+import org.springframework.dao.EmptyResultDataAccessException;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.namedparam.BeanPropertySqlParameterSource;
@@ -52,7 +53,6 @@ public class DatabaseProductRepository implements ProductRepository {
 
 		Long generatedId = keyHolder.getKey().longValue();
 		product.setProduct_id(generatedId);
-
 
 		addDateInfo(product, generatedId);
 		addCertificate(product, generatedId);
@@ -138,15 +138,55 @@ public class DatabaseProductRepository implements ProductRepository {
 	}
 
 	// 상품 조회 기능(product_id로)
-	public Product findById(Long prodcut_id) {
-		SqlParameterSource namedParameter = new MapSqlParameterSource("product_id", prodcut_id);
+	public Product findById(Long product_id) {
+
+		SqlParameterSource namedParameter = new MapSqlParameterSource("product_id", product_id);
 
 		Product product = namedParameterJdbcTemplate.queryForObject(
-				"SELECT product_id, meatGrade, productName, pricePerKg, brandName FROM Product WHERE product_id=:product_id",
+				"SELECT product_id, meat_grade, product_name, price_per_kg, brand_name FROM Product WHERE product_id=:product_id",
 				namedParameter,
 				new BeanPropertyRowMapper<>(Product.class)
 		);
+
+		findDateInfo(product, product.getProduct_id());
+		findFacility(product, product.getProduct_id());
+
 		return product;
+	}
+
+	// 상품 조회 기능 - DateInfo Table(product_id로)
+	private void findDateInfo(Product product, Long product_id) {
+		if (product_id != null) {
+			SqlParameterSource dateInfoParamters = new MapSqlParameterSource("product_id", product_id);
+
+			try {
+				DateInfo dateInfo = namedParameterJdbcTemplate.queryForObject(
+						"SELECT date_id, manufacture_date, use_by_date, product_id FROM DateInfo WHERE product_id=:product_id",
+						dateInfoParamters,
+						new BeanPropertyRowMapper<>(DateInfo.class)
+				);
+				product.setDate_info(dateInfo);
+			} catch (EmptyResultDataAccessException e) {
+				System.out.println(e.getMessage());
+			}
+		}
+	}
+	// 상품 조회 기능 - Facility Table(product_id로)
+	private void findFacility(Product product, Long product_id) {
+		if (product_id != null) {
+			SqlParameterSource facilityParameters = new MapSqlParameterSource("product_id", product_id);
+
+			try {
+				Facility facility = namedParameterJdbcTemplate.queryForObject(
+						"SELECT facility_id, processing_factory, slaughterhouse, product_id FROM Facility WHERE product_id=:product_id",
+						facilityParameters,
+						new BeanPropertyRowMapper<>(Facility.class)
+				);
+				product.setFacility(facility);
+			} catch (EmptyResultDataAccessException e) {
+				System.out.println(e.getMessage());
+			}
+		}
 	}
 
 	// 상품 전체 조회 기능

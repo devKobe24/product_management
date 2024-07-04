@@ -19,11 +19,12 @@ public class ProductController {
 	// Product 테이블 POST
 	@RequestMapping(value = "/products", method = RequestMethod.POST)
 	public ProductDto createProduct(@Valid @RequestBody ProductDto productDto) {
-		return simpleProductService.addToProduct(productDto);
+		return simpleProductService.add(productDto);
 	}
 
 	@RequestMapping(value = "/products/{id}", method = RequestMethod.GET)
 	public ProductDto findProductById(@PathVariable Long id) {
+		ProductDto productDto = new ProductDto();
 		return simpleProductService.findById(id);
 	}
 

@@ -27,8 +27,9 @@ public class Product {
 
 	// Setter
 
-
 	public void setProduct_id(Long product_id) { this.product_id = product_id; }
+
+	public void setMeat_grade(String meat_grade) { this.meat_grade = meat_grade;}
 
 	public void setProduct_name(String product_name) { this.product_name = product_name; }
 
@@ -37,6 +38,12 @@ public class Product {
 	public void setBrand_name(String brand_name) { this.brand_name = brand_name; }
 
 	public void setDate_info(DateInfo date_info) { this.date_info = date_info; }
+
+	public void setFacility(Facility facility) { this.facility = facility;}
+
+	public void setCertificate(Certificate certificate) { this.certificate = certificate; }
+
+	public void setMeat_information(MeatInformation meat_information) { this.meat_information = meat_information; }
 
 	// Getter
 
