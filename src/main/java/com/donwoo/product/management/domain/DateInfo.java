@@ -6,6 +6,19 @@ public class DateInfo {
 	private String use_by_date; // 소비기한
 	private Long product_id;
 
+	public DateInfo(
+			Long date_id,
+			String manufacture_date,
+			String use_by_date,
+			Long product_id
+	) {
+		this.date_id = date_id;
+		this.manufacture_date = manufacture_date;
+		this.use_by_date = use_by_date;
+		this.product_id = product_id;
+	}
+
+
 	// Getter
 	public String getManufacture_date() { return manufacture_date; }
 

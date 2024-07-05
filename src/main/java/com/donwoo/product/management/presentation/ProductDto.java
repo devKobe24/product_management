@@ -34,6 +34,63 @@ public class ProductDto {
 	@NotNull
 	private MeatInformation meat_information;
 
+	public ProductDto() {
+	}
+
+	public ProductDto(
+			String meat_grade,
+			String product_name,
+			Integer price_per_kg,
+			String brand_name
+	) {
+		this.meat_grade = meat_grade;
+		this.product_name = product_name;
+		this.price_per_kg = price_per_kg;
+		this.brand_name = brand_name;
+	}
+
+	public ProductDto(
+			String meat_grade,
+			String product_name,
+			Integer price_per_kg,
+			String brand_name,
+			DateInfo date_info,
+			Facility facility,
+			Certificate certificate,
+			MeatInformation meat_information
+	) {
+		this.meat_grade = meat_grade;
+		this.product_name = product_name;
+		this.price_per_kg = price_per_kg;
+		this.brand_name = brand_name;
+		this.date_info = date_info;
+		this.facility = facility;
+		this.certificate = certificate;
+		this.meat_information = meat_information;
+	}
+
+	public ProductDto(
+			Long product_id,
+			String meat_grade,
+			String product_name,
+			Integer price_per_kg,
+			String brand_name,
+			DateInfo date_info,
+			Facility facility,
+			Certificate certificate,
+			MeatInformation meat_information
+	) {
+		this.product_id = product_id;
+		this.meat_grade = meat_grade;
+		this.product_name = product_name;
+		this.price_per_kg = price_per_kg;
+		this.brand_name = brand_name;
+		this.date_info = date_info;
+		this.facility = facility;
+		this.certificate = certificate;
+		this.meat_information = meat_information;
+	}
+
 	// Getter
 	public Long getProduct_id() {
 		return product_id;
